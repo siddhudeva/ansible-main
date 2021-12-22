@@ -1,4 +1,3 @@
-#!/bin/bash
 
 LOG=/tmp/mysql.log
 rm -rf /tmp/mysql.log
@@ -10,3 +9,4 @@ Status() {
     echo -e "\e[1;31m ${2} is -success"
   fi
 }
+
