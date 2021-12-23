@@ -19,13 +19,14 @@ echo "ALTER USER 'root'@'roboshop' IDENTIFIED BY 'RoboShop@1'; flush privileges;
 mysql -u root --password="$temp_password" --connect-expired-password < /tmp/reset_pass.sql &>>${LOG}
   Status $? "user name and password setted"
   else
-echo -e mysql -uroot -pRoboShop@1 "\e[1;32m password is already updated\e[0m" &>>${LOG}
+echo "\e[1;32m password is already updated\e[0m"
+exit
 fi
 echo 'show plugins;' | mysql -uroot -pRoboShop@1 | grep 'validate_password' &>>${LOG}
 if [ $? -ne 0 ]; then
   echo -e "\e[a+1;33m This plugin is removed already"
   else
-echo 'uninstall validate_password;' | mysql -uroot -pRoboshop@1 &>>${LOG}
+echo 'uninstall validate_password;' | mysql -uroot -pRoboshop@1
   echo -e "\e[a+1;32mvalidation password plugin is uninstalled successfully\e[0m"
 fi
 
