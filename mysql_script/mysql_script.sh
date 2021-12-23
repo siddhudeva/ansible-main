@@ -24,11 +24,13 @@ exit
 fi
 echo 'show plugins;' | mysql -uroot -pRoboShop@1 | grep 'validate_password' &>>${LOG}
 if [ $? -ne 0 ]; then
-  echo -e "\e[a+1;33m This plugin is removed already"
+  echo -e "\e[1;33m This plugin is removed already\e[0m"
   else
 echo 'uninstall validate_password;' | mysql -uroot -pRoboshop@1
-  echo -e "\e[a+1;32mvalidation password plugin is uninstalled successfully\e[0m"
+  echo -e "\e[1;32mvalidation password plugin is uninstalled successfully\e[0m"
+exit
 fi
+
 
 curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/archive/main.zip" &>>${LOG}
 unzip -o /tmp/mysql.zip &>>${LOG} && cd /tmp/mysql-main/ && mysql -uroot -pRoboShop@1 <shipping.sql &>>${LOG}
